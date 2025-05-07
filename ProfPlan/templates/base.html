@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ProfPlan</title>
+</head>
+<body>
+    <aside>
+        {% include 'partials/_sidebar.html'%}
+    </aside>
+    <main>
+        {% block contents %}
+        {% endblock contents %}
+    </main>
+    <footer>
+        {% include "partials/_footer.html" %}
+    </footer>
+</body>
+</html>
