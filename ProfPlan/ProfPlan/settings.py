@@ -78,9 +78,9 @@ WSGI_APPLICATION = 'ProfPlan.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'profplan',
-        'USER': 'root',
-        'PASSWORD': 'Jumpjet80288!',
+        'NAME': '',
+        'USER': '',
+        'PASSWORD': '',
         'HOST': '127.0.0.1',
         'PORT': '3306',
         'OPTIONS': {

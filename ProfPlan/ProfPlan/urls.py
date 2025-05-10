@@ -20,5 +20,5 @@ from Disciplinas import urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('curso/', include('Disciplinas.urls')),
+    path('disciplinas/', include('Disciplinas.urls')),
 ]

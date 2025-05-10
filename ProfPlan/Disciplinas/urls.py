@@ -1,6 +1,7 @@
 from django.urls import path
-from .views import curso_form
+from .views import *
 
 urlpatterns = [
-    path('create/', curso_form),
+    path('curso/new', curso_form),
+    path('disciplina/new', disciplina_form)
 ]

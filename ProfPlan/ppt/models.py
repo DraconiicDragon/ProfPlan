@@ -1,13 +1,24 @@
 from django.db import models
 from calendario.models import Calendario
-from Disciplinas.models import Disciplina
-from django.contrib.auth.models import User
+from Disciplinas.models import DisciplinaProfessor
 
 # Create your models here.
+class Status(models.Model):
+    descricao = models.CharField(max_length=50)
+
+class PedidoPpt(models.Model):
+    disciplinaProfessor = models.ForeignKey(
+        DisciplinaProfessor,
+        on_delete = models.CASCADE
+    )
+    data_entrega = models.DateField()
+    status = models.ForeignKey(
+        Status,
+        on_delete = models.CASCADE
+    )
 
 class Ppt(models.Model):
     serie_periodo = models.PositiveSmallIntegerField()
-    turma = models.CharField(max_length=10)
     trimestre_semestre = models.CharField(max_length=10)
     ementa = models.TextField()
     objetivos = models.TextField()
@@ -23,14 +34,12 @@ class Ppt(models.Model):
         Calendario,
         on_delete=models.CASCADE
     )
-    disciplina = models.ForeignKey(
-        Disciplina,
+    
+    pedido = models.ForeignKey(
+        PedidoPpt,
         on_delete=models.CASCADE
     )
-    usuario = models.ForeignKey(
-        User,
-        on_delete=models.CASCADE
-    )
+
 
 class TipoAtividade(models.Model):
     nome = models.CharField(max_length=50)

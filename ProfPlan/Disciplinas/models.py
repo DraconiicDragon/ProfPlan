@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 # Create your models here.
 
@@ -31,5 +32,19 @@ class Disciplina(models.Model):
     )
     
     def __str__(self):
-        return self.curso.codigo + "." + str(self.pk)
+        return self.curso.codigo + "." + self.nome
+    
+class DisciplinaProfessor(models.Model):
+    serie_periodo = models.PositiveSmallIntegerField()
+    turma = models.CharField(max_length=10)
+
+    usuario = models.ForeignKey(
+        User,
+        on_delete=models.CASCADE
+    )
+    disciplinas = models.ForeignKey(
+        Disciplina,
+        on_delete=models.CASCADE
+    )
+
 
