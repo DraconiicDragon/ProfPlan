@@ -16,7 +16,6 @@ class Curso(models.Model):
         Modalidade_Ensino,
         on_delete = models.CASCADE
     )
-
     def __str__(self):
         return self.nome
 
@@ -46,5 +45,8 @@ class DisciplinaProfessor(models.Model):
         Disciplina,
         on_delete=models.CASCADE
     )
+    
+    def __str__(self):
+        return self.turma + '.' + self.disciplinas.nome
 
 
