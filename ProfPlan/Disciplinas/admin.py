@@ -1,8 +1,8 @@
 from django.contrib import admin
-from .models import *
+from .models import ModalidadeEnsino, Curso, DisciplinaMinistrada, Disciplina
 # Register your models here.
 
-admin.site.register(Modalidade_Ensino)
+admin.site.register(ModalidadeEnsino)
 admin.site.register(Curso)
 admin.site.register(Disciplina)
-admin.site.register(DisciplinaProfessor)
+admin.site.register(DisciplinaMinistrada)

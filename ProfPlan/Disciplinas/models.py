@@ -3,7 +3,7 @@ from django.contrib.auth.models import User
 
 # Create your models here.
 
-class Modalidade_Ensino(models.Model):
+class ModalidadeEnsino(models.Model):
     descricao = models.CharField(max_length=50)
 
     def __str__(self):
@@ -13,7 +13,7 @@ class Curso(models.Model):
     nome = models.CharField(max_length=50)
     codigo = models.CharField(max_length=50)
     modalidade_ensino = models.ForeignKey(
-        Modalidade_Ensino,
+        ModalidadeEnsino,
         on_delete = models.CASCADE
     )
     def __str__(self):
@@ -33,9 +33,10 @@ class Disciplina(models.Model):
     def __str__(self):
         return self.curso.codigo + "." + self.nome
     
-class DisciplinaProfessor(models.Model):
+class DisciplinaMinistrada(models.Model):
     serie_periodo = models.PositiveSmallIntegerField()
     turma = models.CharField(max_length=10)
+    ano = models.DateField()
 
     usuario = models.ForeignKey(
         User,

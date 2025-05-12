@@ -1,6 +1,6 @@
 from django.db import models
 from calendario.models import Calendario
-from Disciplinas.models import DisciplinaProfessor
+from Disciplinas.models import DisciplinaMinistrada
 
 # Create your models here.
 class Status(models.Model):
@@ -8,7 +8,7 @@ class Status(models.Model):
 
 class PedidoPpt(models.Model):
     disciplinaProfessor = models.ForeignKey(
-        DisciplinaProfessor,
+        DisciplinaMinistrada,
         on_delete = models.CASCADE
     )
     data_entrega = models.DateField()

@@ -1,4 +1,4 @@
-from .models import Curso, Disciplina, DisciplinaProfessor
+from .models import Curso, Disciplina, DisciplinaMinistrada
 from django import forms
 
 class CursoForm(forms.ModelForm):
@@ -11,7 +11,7 @@ class DisciplinaForm(forms.ModelForm):
         model = Disciplina
         fields = '__all__'
 
-class DisciplinaProfessorForm(forms.ModelForm):
+class DisciplinaMinistradaForm(forms.ModelForm):
     class Meta:
-        model = DisciplinaProfessor
+        model = DisciplinaMinistrada
         fields = '__all__'

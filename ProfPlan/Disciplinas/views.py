@@ -1,6 +1,6 @@
 from django.shortcuts import render
-from .forms import CursoForm, DisciplinaForm, DisciplinaProfessorForm
-from .models import Curso, Disciplina
+from .forms import CursoForm, DisciplinaForm, DisciplinaMinistradaForm
+from .models import Curso, Disciplina, DisciplinaMinistrada
 
 # Create your views here.
 
@@ -8,14 +8,17 @@ formsPage = "forms.html"
 listPage = "list.html"
 
 def curso_form(request):
-    title = "Cadastrar Curso"
-    form = CursoForm()
     if request.method == 'POST':
         form = CursoForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {"form" : form, "title": title}
-    return render(request, formsPage, context)
+            return view_cursos(request)
+        
+    if request.method == 'GET':
+        title = "Cadastrar Curso"
+        form = CursoForm()
+        context = {"form" : form, "title": title}
+        return render(request, formsPage, context)
 
 def view_cursos(request):
     title = "Cursos"
@@ -30,14 +33,17 @@ def view_cursos(request):
     return render(request, listPage, context)
 
 def disciplina_form(request):
-    title = "Cadastrar Disciplina"
-    form = DisciplinaForm()
     if request.method == 'POST':
         form = DisciplinaForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {"form" : form, "title": title}
-    return render(request, formsPage, context)
+            return view_disciplinas(request)
+        
+    if request.method == 'GET':
+        title = "Cadastrar Disciplina"
+        form = DisciplinaForm()
+        context = {"form" : form, "title": title}
+        return render(request, formsPage, context)
 
 def view_disciplinas(request):
     title = "Disciplinas"
@@ -51,14 +57,27 @@ def view_disciplinas(request):
     }
     return render(request, listPage, context)
     
-
-
-def disciplina_professor_form(request):
-    title = "Cadastrar Disciplina"
-    form = DisciplinaProfessorForm()
+def disciplina_ministrada_form(request):
     if request.method == 'POST':
         form = DisciplinaForm(request.POST)
         if form.is_valid():
             form.save()
-    context = {"form" : form, "title": title}
-    return render(request, formsPage, context)
+            return view_disciplinas_ministradas(request)
+        
+    if request.method == 'GET':
+        title = "Cadastrar Ministrante"
+        form = DisciplinaMinistradaForm()
+        context = {"form" : form, "title": title}
+        return render(request, formsPage, context)
+
+def view_disciplinas_ministradas(request):
+    title = 'Disciplinas Ministradas'
+    offset = 0
+    limit = 10
+    list = DisciplinaMinistrada.objects.all().values('ano', 'disciplinas__nome', 'usuario__first_name', 'turma')[offset : limit]
+    context = {
+        "list" : list,
+        "title" : title,
+        "headers" : ('Ano', 'Nome', 'Ministrante', 'Turma')
+    }
+    return render(request, listPage, context)
