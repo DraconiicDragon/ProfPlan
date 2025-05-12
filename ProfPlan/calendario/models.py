@@ -10,7 +10,16 @@ class Calendario(models.Model):
 class FeriadoFixo(models.Model):
     data = models.DateField()
     nome = models.CharField(max_length=50)
-    calendario = models.ManyToManyField(Calendario)
+
+class FeriadoFixoCalendario(models.Model):
+    feriado = models.ForeignKey(
+        FeriadoFixo,
+        on_delete = models.CASCADE
+    )
+    calendario = models.ForeignKey(
+        Calendario,
+        on_delete= models.CASCADE
+    )
 
 class NomeFeriadoMovel(models.Model):
     nome = models.CharField(max_length=50)
